@@ -1060,7 +1060,7 @@ document.querySelectorAll('.proj-blog-link').forEach(link => {
   const NODES = [
     { id:'origin',  tag:'ORIGIN',    title:'irukatun.dev', sub:'選擇一條路徑，\n開始你的探索', x:1500, y:1400, color:'#4aaed4', type:'origin',  connects:['contact','portal','blog','github'] },
     { id:'contact', tag:'REACH OUT', title:'聯絡我',       sub:'與豚豚取得聯絡',               x:750,  y:700,  color:'#4aaed4', type:'hub',     connects:['origin','email','discord'] },
-    { id:'portal',  tag:'SERVICES',  title:'服務入口',     sub:'進入服務入口',              x:2250, y:700,  color:'#f97316', type:'portal',  url:null, connects:['origin'] },
+    { id:'portal',  tag:'SERVICES',  title:'服務入口',     sub:'進入服務入口',              x:2250, y:700,  color:'#f97316', type:'portal',  url:'https://portal.irukatun.dev', connects:['origin'] },
     { id:'blog',    tag:'BLOG',   title:'部落格',       sub:'HackMD',                   x:2250, y:2100, color:'#34d399', type:'portal',  url:'https://hackmd.io/@irukatun', connects:['origin'] },
     { id:'github',  tag:'CODE',    title:'程式碼',       sub:'GitHub',                     x:750,  y:2100, color:'#a78bfa', type:'portal',  url:'https://github.com/irukatun', connects:['origin'] },
     { id:'email',   tag:'EMAIL',     title:'電子郵件',     sub:'support@irukatun.dev',         x:200,  y:100,  color:'#4aaed4', type:'link',    url:'mailto:support@irukatun.dev', connects:['contact'] },

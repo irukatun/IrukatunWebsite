@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>portal.irukatun.dev — 豚豚的服務入口</title>
+<meta name="description" content="portal.irukatun.dev — 豚豚的服務入口導引頁"/>
+<meta name="author" content="Irukatun"/>
+<meta name="robots" content="index, follow"/>
+<!-- Open Graph -->
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://portal.irukatun.dev/"/>
+<meta property="og:title" content="portal.irukatun.dev — 豚豚的服務入口"/>
+<meta property="og:description" content="portal.irukatun.dev — 豚豚的服務入口導引頁"/>
+<meta property="og:image" content="https://portal.irukatun.dev/img/favicon.png"/>
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="portal.irukatun.dev — 豚豚的服務入口"/>
+<meta name="twitter:description" content="portal.irukatun.dev — 豚豚的服務入口導引頁"/>
+<meta name="twitter:image" content="https://portal.irukatun.dev/img/favicon.png"/>
+<!-- Favicon -->
+<link rel="icon" href="img/favicon.png" type="image/png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Huninn&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/style.css"/>
+<script>(function(){var t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);})();</script>
+<style>
+/* FOUC prevention */
+.smap-corner-label{opacity:0;}
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+</head>
+<body>
+
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- ══════════════════════════════════
+     PORTAL — 服務入口 · 思維地圖
+     ══════════════════════════════════ -->
+<section id="sitemap">
+  <h4 class="smap-corner-label">服 務 入 口 &nbsp;·&nbsp; <span>PORTAL</span></h4>
+  <button id="smap-theme-btn" aria-label="切換深色模式"></button>
+  <div id="smap-flash"></div>
+  <div id="smap-viewport">
+    <div id="smap-canvas">
+      <svg id="smap-svg" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <filter id="smap-glow" x="-2%" y="-8%" width="104%" height="116%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+      </svg>
+      <!-- nodes injected by JS -->
+    </div>
+  </div>
+  <div id="smap-hud">
+    <div id="smap-trail"></div>
+    <span class="smap-hud-sep">·</span>
+    <span id="smap-hud-label">PORTAL</span>
+  </div>
+  <div id="smap-footer">
+    <div id="smap-footer-license" aria-hidden="true">
+      <p>本網站已開源於 GitHub-Irukatun</p>
+      <p>原始碼授權: AGPL-3.0</p>
+      <p>內容 / 設計授權: CC BY-NC-SA 4.0</p>
+      <p>歡迎用於學習借鑑!但豚豚不太希望被抄襲</p>
+      <p>所以要記得遵守條款並註記原作者噢</p>
+    </div>
+    <div id="smap-footer-panel" aria-hidden="true">
+      <p>特別感謝 Justfont 提供好看的開源字體!</p>
+      <p>字體: Jf Open 粉圓 by Justfont</p>
+      <p>授權: SIL Open Font License 1.1</p>
+    </div>
+    <p class="smap-copyright" id="smap-copyright-btn" role="button" tabindex="0"><span class="smap-copyright-main">© 2026 irukatun.dev</span><span class="smap-copyright-hint">點擊查看版權說明</span></p>
+  </div>
+</section>
+
+<script src="js/main.js"></script>
+
+</body>
+</html>
