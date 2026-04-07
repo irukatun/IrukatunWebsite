@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>irukatun.dev — 豚豚的個人品牌網域</title>
+<meta name="description" content="irukatun.dev — 豚豚的個人品牌網域"/>
+<meta name="author" content="Irukatun"/>
+<meta name="robots" content="index, follow"/>
+<!-- Open Graph -->
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://www.irukatun.dev/"/>
+<meta property="og:title" content="irukatun.dev — 豚豚的個人品牌網域"/>
+<meta property="og:description" content="irukatun.dev — 豚豚的個人品牌網域"/>
+<meta property="og:image" content="https://www.irukatun.dev/img/favicon.png"/>
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="irukatun.dev — 豚豚的個人品牌網域"/>
+<meta name="twitter:description" content="irukatun.dev — 豚豚的個人品牌網域"/>
+<meta name="twitter:image" content="https://www.irukatun.dev/img/favicon.png"/>
+<!-- Favicon -->
+<link rel="icon" href="img/favicon.png" type="image/png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Huninn&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/style.css"/>
+<script>(function(){var t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);document.documentElement.classList.add('nav-locked');})();</script>
+<style>
+/* FOUC prevention — matches GSAP initial states so elements never flash visible */
+#hero-mono-text{transform:translateY(110%);}
+.hero-title,#hero-sub,#hero-chips,#hero-scroll{opacity:0;}
+.s-label{opacity:0;}
+#about .tword,#skills .tword,#certs .tword,#projects .tword{transform:translateY(110%);}
+#about-card,#about-right,.skill-row,.skills-map-label,.skills-map-hint,
+#skill-desc,.cert-scope-label,.cert-filter,#terminal,
+.cert-nav-group,.cert-card,.proj-row{opacity:0;}
+html.nav-locked .nav-links,html.nav-locked .nav-hamburger{opacity:0;pointer-events:none;}
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
+</head>
+<body>
+
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<nav id="navbar">
+  <a href="#hero" class="nav-logo"><span class="a">iruka</span><span class="b">tun</span>.dev</a>
+  <ul class="nav-links">
+    <li><a href="#about">關於我</a></li>
+    <li><a href="#skills">技能</a></li>
+    <li><a href="#certs">證照</a></li>
+    <li><a href="#projects">作品</a></li>
+    <li><a href="#sitemap">聯絡</a></li>
+  </ul>
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="開啟選單">
+    <span></span><span></span><span></span>
+  </button>
+  <button class="nav-theme-btn" id="nav-theme-btn" aria-label="切換深色模式"></button>
+</nav>
+
+<div id="mobile-menu">
+  <ul>
+    <li><a href="#about">關於我</a></li>
+    <li><a href="#skills">技能</a></li>
+    <li><a href="#certs">證照</a></li>
+    <li><a href="#projects">作品</a></li>
+    <li><a href="#sitemap">聯絡</a></li>
+  </ul>
+</div>
+
+<div id="ball-overlay"></div>
+<div id="hero-wrap">
+<section id="hero">
+
+  <div class="hero-content">
+    <span class="hero-mono"><span id="hero-mono-text">~/irukatun.dev $</span></span>
+    <h1 class="hero-title">
+      <span id="tw-text"></span>
+    </h1>
+    <h3 class="hero-sub" id="hero-sub">歡迎來到豚豚的個人網站 —— 這是一個抱著夢想的高中生創造的技術展示/實驗中心 .ᐟ.ᐟ</h3>
+    <div class="hero-chips" id="hero-chips">
+      <h5 class="chip">網頁前端設計</h5>
+      <h5 class="chip">C｜Python</h5>
+      <h5 class="chip">ESP-IDF</h5>
+      <h5 class="chip">Linux｜自架伺服器</h5>
+      <h5 class="chip">雲計算部署</h5>
+      <h5 class="chip">網路安全｜可靠性工程</h5>
+      <h5 class="chip">提示詞工程｜模型微調</h5>
+    </div>
+  </div>
+  <div class="hero-scroll" id="hero-scroll">
+    <h4 class="scroll-txt">往下滑</h4>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+</div><!-- /hero-wrap -->
+
+<section id="about" class="section">
+  <p class="s-label" id="lbl-about">關於我</p>
+  <h2 class="s-title">
+    <span class="tline"><span class="tword">我是</span>&nbsp;<span class="tword">...誰？</span></span>
+  </h2>
+  <div class="about-grid">
+    <div class="about-card" id="about-card">
+      <div class="hanzi-wrap">
+        <div class="hanzi-item">
+          <div class="hanzi-grid"><span class="hanzi-char">豚</span></div>
+          <span class="hanzi-zhuyin"><span class="zhuyin-main">ㄊㄨㄣ</span><span class="zhuyin-tone">ˇ</span></span>
+        </div>
+        <div class="hanzi-item">
+          <div class="hanzi-grid"><span class="hanzi-char">豚</span></div>
+          <span class="hanzi-zhuyin"><span class="zhuyin-main">ㄊㄨㄣ</span><span class="zhuyin-tone">ˊ</span></span>
+        </div>
+      </div>
+      <h4 class="about-handle">"Iruka"（イルカ）"Tun"（豚）</h4>
+      <div class="fun-facts">
+        <h4 class="fact"><span class="label">名稱  </span><span class="val">張宸碩（zcs）</span></h4>
+        <h4 class="fact"><span class="label">生日  </span><span class="val">2007/11 天蠍</span></h4>
+        <h4 class="fact"><span class="label">學校  </span><span class="val">桃園市私立復旦中學</span></h4>
+        <h4 class="fact"><span class="label">年級  </span><span class="val">12 年級（高三）</span></h4>
+        <h4 class="fact"><span class="label">生活圈  </span><span class="val">台灣 桃園市</span></h4>
+        <h4 class="fact"><span class="label">興趣  </span><span class="val">資訊｜科技｜音樂｜心理學</span></h4>
+        <h4 class="fact"><span class="label">MBTI  </span><span class="val">INFP-T</span></h4>
+      </div>
+    </div>
+    <div class="about-right" id="about-right">
+      <p>哈柔！我是Irukatun</p>
+      <p>iruka是日文的海豚而tun是中文的海豚，所以，你也可以叫我豚豚！</p>
+      <p>國中開始研究硬體、13歲那年自己從配單到組裝了人生第一台電腦，開啟了我的開發之路，高中因緣際會接觸到校內的Arduino課程而開始步入嵌入式的領域，然後越走越深——網頁、開發板、AI等等...各種有興趣的東東都碰了一輪。</p>
+      <p>我喜歡把東西從零搭建起來——從最底層的韌體一路寫到最頂層瀏覽器的前端，再用伺服器或雲計算平台把它部署起來。比起用框架組積木，我更想知道底層發生了什麼！</p>
+      <p class="about-tagline">// Build it. Break it. Understand it.</p>
+    </div>
+  </div>
+</section>
+
+<section id="skills" class="section">
+  <p class="s-label" id="lbl-skills">技能</p>
+  <h2 class="s-title">
+    <span class="tline"><span class="tword">從裸機硬體</span></span>
+    <span class="tline"><span class="tword">到正式上線。</span></span>
+  </h2>
+  <h3 class="skills-map-label">— 我的技能圖譜</h3>
+  <p class="skills-map-hint">// 豚豚的技術棧簡覽</p>
+  <div class="skill-domains">
+    <div class="skill-row">
+      <div class="skill-label"><span class="domain-icon">🌐</span>網頁前端</div>
+      <div class="skill-tags">
+        <span class="stag" data-tip="本站即基於 HTML5 + CSS3 構建">HTML｜CSS</span>
+        <span class="stag" data-tip="互動功能及彩蛋皆以 Vanilla JS (ES2020+) 完成">Vanilla JS</span>
+        <span class="stag" data-tip="全站動畫和特效用 GSAP 3.13.0 動畫引擎驅動">GSAP</span>
+      </div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-label"><span class="domain-icon">⚙️</span>後端/部署</div>
+      <div class="skill-tags">
+        <span class="stag" data-tip="Iruka Drive、Iruka Status之類的自架服務都容器化跑在 Docker 裡面">Docker Compose</span>
+        <span class="stag" data-tip="豚豚最拿手的競賽程式語言，建置時用於大部分的後端自定義 API">Python</span>
+        <span class="stag" data-tip="部分服務是基於 SQLite、MariaDB 等關聯式資料存儲層的">Relational Database</span>
+        <span class="stag" data-tip="用於小部分服務的記憶體快取，優化使用者的體驗">Redis</span>
+      </div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-label"><span class="domain-icon">🔧</span>嵌入式</div>
+      <div class="skill-tags">
+        <span class="stag" data-tip="我 GitHub 上的智慧小助理專題就是用這個開發的，基於 VSCode + ESP-IDF 5.5.3">ESP-IDF</span>
+        <span class="stag" data-tip="嵌入式的首選語言，雖然一直被記憶體搞到，所以未來能力變強以後考慮用 Rust 取代掉他">C</span>
+        <span class="stag" data-tip="這是我人生第一次接觸並行程式設計的地方，第一次體驗什麼是多線程、什麼是一核有難多核圍觀的地方">FreeRTOS</span>
+        <span class="stag" data-tip="智慧小助理整個介面的美化工程都是基於它">LVGL</span>
+        <span class="stag" data-tip="智慧小助理的螢幕（SPI）、麥克風和喇叭（I2S）、感測器（I2C）通通靠這些協定串在一起">Serial Protocols</span>
+        <span class="stag" data-tip="聽說沒處理過 DMA 問題的不算真正的嵌入式工程師 —— 愛因斯坦，沒有說過">DMA</span>
+        <span class="stag" data-tip="蝦皮兩張 360 還送外殼和風扇，不買對不起自己">Orange Pi</span>
+        <span class="stag" data-tip="Armbian 什麼時候才能支援 GC2035 qwq 我的鏡頭好幾百塊卻不能用">Armbian</span>
+      </div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-label"><span class="domain-icon">🧠</span>AI / ML</div>
+      <div class="skill-tags">
+        <span class="stag" data-tip="一個很不錯的推理框架，曾經想參與 Issue #20225 的 SSM cache 問題，但礙於自己太菜了，只敢隔岸觀火">llama.cpp</span>
+        <span class="stag" data-tip="我曾經的 RX6600 被 AMD 遺棄不給 ROCm，在 release 還沒有 Vulkan 的年代靠自己編譯後端讓它跑起來">Vulkan</span>
+        <span class="stag" data-tip="小鹿熙（Lucilla）就是靠 Qwen3 27B 的 ChatML 提示詞工程寫出來的">Prompt Engineering</span>
+        <span class="stag" data-tip="智慧小助理的動作辨識模型就是基於這個，雖然很方便快速，不過還是需要大量的資料蒐集效果才會比較好">Google Teachable Machine</span>
+      </div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-label"><span class="domain-icon">🖥️</span>基礎建設</div>
+      <div class="skill-tags">
+        <span class="stag" data-tip="一個沒有太多包袱而且架構很直觀的系統，維護起來比 Windows 輕鬆而且自由多了">Linux</span>
+        <span class="stag" data-tip="賽博活佛">Cloudflare Access (OAuth)</span>
+        <span class="stag" data-tip="SSH、RDP、Moonlight 的必備品，隨時隨地遠端開發，打開平板就能距離百公里回到熟悉的開發環境">ZeroTier</span>
+        <span class="stag" data-tip="永久免費的 e2-micro，不拿白不拿">GCP</span>
+        <span class="stag" data-tip="為了讓對岸一起玩MC的朋朋繞開對岸直連海纜不穩的問題，特地在日本架了一個 FRP 節點">FRP</span>
+        <span class="stag" data-tip="豚豚的 SRE 啟蒙教材">Minecraft Server</span>
+      </div>
+    </div>
+  </div>
+  <div class="skill-desc" id="skill-desc">
+    <div class="skill-desc-strip" id="skill-desc-strip"></div>
+  </div>
+  <div class="terminal" id="terminal">
+    <div class="term-bar">
+      <div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div>
+      <div class="term-title">irukatun@iruka_pc_studio</div>
+    </div>
+    <div class="term-body">
+      <div><span class="tco">Welcome to IrukaLinux 2.0 LTS (GNU/Linux 6.12.15-irukatun aarch64)</span></div>
+      <div><span class="tco">  本安裝為最小化展示環境，不可以還原。</span></div>
+      <div><span class="tco">  若堅持嘗試，請執行 <span class="tk">unminimize</span>。</span></div>
+      <div id="term-last-login"><span class="tco">Last login: ...</span></div>
+      <div><span class="tp">irukatun@iruka_pc_studio</span><span class="tc">:~$ </span><span class="tc">whoami</span></div>
+      <div><span class="tv">irukatun</span></div>
+      <div>&nbsp;</div>
+      <div><span class="tp">irukatun@iruka_pc_studio</span><span class="tc">:~$ </span><span class="tc">cat</span></div>
+      <div><span class="tv">唔...喵?</span></div>
+      <div>&nbsp;</div>
+      <div id="term-prompt-line"><span id="term-prompt-label"><span class="tp">irukatun@dev</span><span class="tc">:~$ </span></span><span id="term-input-mirror"></span><span class="tcur"></span></div>
+    </div>
+  </div>
+  <div class="term-hint">⌨ 試試看 — 輸入 <span style="color:rgba(200,187,160,.85)">help</span> 查看可用指令</div>
+</section>
+
+<section id="certs" class="section">
+  <div class="certs-header">
+    <div>
+      <p class="s-label" id="lbl-certs">證照</p>
+      <h2 class="s-title">
+        <span class="tline"><span class="tword">取得的認證和獎狀。</span></span>
+      </h2>
+      <h3 class="skills-map-label cert-scope-label">— 此區僅展示高中階段獲獎</h3>
+      <label class="cert-filter">
+        <input type="checkbox" id="cert-filter-toggle">
+        <span class="cft-track"><span class="cft-thumb"></span></span>
+        <span class="cft-text">僅展示資訊領域證照</span>
+      </label>
+    </div>
+    <div class="cert-nav-group">
+      <button class="cert-nav" id="cert-nav-prev" aria-label="向左滾動">‹</button>
+      <button class="cert-nav" id="cert-nav-next" aria-label="向右滾動">›</button>
+    </div>
+  </div>
+  <div class="cert-scroll-wrap">
+  <div class="cert-grid">
+    <div class="cert-card" data-cert="1">
+      <div class="cert-thumb"><img src="img/cert_apcs_logo.png" alt="APCS Logo"></div>
+      <div class="cert-info">
+        <div class="cert-name">APCS 大學程式設計先修檢測</div>
+        <div class="cert-tags"><span class="cert-tag">資訊</span></div>
+        <div class="cert-issuer">教育部 / 國立臺灣師範大學-資訊工程學系</div>
+        <div class="cert-date">2026/03</div>
+        <div class="cert-expand-hint">查看更多</div>
+      </div>
+    </div>
+    <div class="cert-card" data-cert="2">
+      <div class="cert-thumb"><img src="img/cert_azure_ai_logo.png" alt="Azure AI Fundamentals Logo"></div>
+      <div class="cert-info">
+        <div class="cert-name">Azure AI Fundamentals</div>
+        <div class="cert-tags"><span class="cert-tag">資訊</span></div>
+        <div class="cert-issuer">Microsoft 微軟</div>
+        <div class="cert-date">2025/08</div>
+        <div class="cert-expand-hint">查看更多</div>
+      </div>
+    </div>
+    <div class="cert-card" data-cert="3">
+      <div class="cert-thumb"><img src="img/cert_iii_logo.png" alt="III Logo"></div>
+      <div class="cert-info">
+        <div class="cert-name">生成式AI能力認證</div>
+        <div class="cert-tags"><span class="cert-tag">資訊</span></div>
+        <div class="cert-issuer">財團法人資訊工業策進會</div>
+        <div class="cert-date">2025/07</div>
+        <div class="cert-expand-hint">查看更多</div>
+      </div>
+    </div>
+    <div class="cert-card" data-cert="4">
+      <div class="cert-thumb"><img src="img/cert_self_learn_ai_logo.png" alt="Self Learn AI Logo"></div>
+      <div class="cert-info">
+        <div class="cert-name">學生自主學習動態展</div>
+        <div class="cert-tags"><span class="cert-tag">資訊</span></div>
+        <div class="cert-issuer">財團法人桃園市復旦高級中等學校</div>
+        <div class="cert-date">2025/07</div>
+        <div class="cert-expand-hint">查看更多</div>
+      </div>
+    </div>
+    <div class="cert-card" data-cert="5">
+      <div class="cert-thumb"><img src="img/cert_essay_logo.png" alt="Essay Logo"></div>
+      <div class="cert-info">
+        <div class="cert-name">生活寫作優良獎狀</div>
+        <div class="cert-tags"><span class="cert-tag">國語文寫作</span></div>
+        <div class="cert-issuer">財團法人桃園市復旦高級中等學校</div>
+        <div class="cert-date">2025/06</div>
+        <div class="cert-expand-hint">查看更多</div>
+      </div>
+    </div>
+    <div class="cert-card" data-cert="6">
+      <div class="cert-thumb"><img src="img/cert_cpr_logo.png" alt="CPR Logo"></div>
+      <div class="cert-info">
+        <div class="cert-name">心肺復甦術(CPR)急救證書</div>
+        <div class="cert-tags"><span class="cert-tag">醫學</span></div>
+        <div class="cert-issuer">台灣急救教育推廣與諮詢中心</div>
+        <div class="cert-date">2024/10</div>
+        <div class="cert-expand-hint">查看更多</div>
+      </div>
+    </div>
+  </div>
+  <div class="cert-timeline">
+    <span class="cert-tl-end">近</span>
+    <span class="cert-tl-line"></span>
+    <span class="cert-tl-end cert-tl-end--old">遠</span>
+  </div>
+  </div>
+</section>
+
+<section id="projects" class="section">
+  <p class="s-label" id="lbl-projects">作品</p>
+  <h2 class="s-title">
+    <span class="tline"><span class="tword">我做過的東西。</span></span>
+  </h2>
+  <div class="proj-list">
+
+    <div class="proj-row">
+      <div class="proj-visual pt1" data-img="img/proj_old_website.png"><div class="proj-visual-inner pt1"></div></div>
+      <div class="proj-body">
+        <div class="proj-name">個人品牌網站建置</div>
+        <p class="proj-desc">從零獨立建立個人品牌網站，原先網域是自己的一站式服務入口，後來新增各種功能如暗色模式、版本管理。持續迭代超過半年，後來進行了全面重新規劃，將主站打造成自己的個人介紹網頁（即此站）。</p>
+        <div class="proj-tline">
+          <div class="proj-tline-item">
+            <span class="proj-tline-date">2025.07.24</span>
+            <div class="proj-tline-title">首次上線</div>
+            <div class="proj-tline-body">個人首頁首次上線，包含基本個人資訊展示，完成 SEO 設定與網域配置。</div>
+          </div>
+          <div class="proj-tline-item">
+            <span class="proj-tline-date">2025.07.26～27</span>
+            <div class="proj-tline-title">服務按鈕與響應式</div>
+            <div class="proj-tline-body">新增 Jupyter Notebook 服務入口按鈕；修正按鈕顯示與 JS 語法問題，完成手機平板響應式優化，新增遠端連線功能與連線協議選擇介面。</div>
+          </div>
+          <div class="proj-tline-item">
+            <span class="proj-tline-date">2025.08.04</span>
+            <div class="proj-tline-title">服務擴充</div>
+            <div class="proj-tline-body">新增服務狀態後台入口（含防誤操作確認對話框）、遠端存取服務項目；更新 Minecraft 服務重定向網址。</div>
+          </div>
+          <div class="proj-tline-item">
+            <span class="proj-tline-date">2025.08.19～20</span>
+            <div class="proj-tline-title">頭像互動與主題系統</div>
+            <div class="proj-tline-body">新增可點擊互動頭像（雖然當時尚未實作個人展示網頁）；引入暗色模式切換功能，修改了部分設計；同時建立了版本管理機制（當初是為了防止css快取造成的問題），進入 v1.3.x 迭代。</div>
+          </div>
+          <div class="proj-tline-item">
+            <span class="proj-tline-date">2025.09.22～29</span>
+            <div class="proj-tline-title">v1.3.22～1.3.24 穩定迭代</div>
+            <div class="proj-tline-body">更新個人網域描述，慢慢確立了設計方向；連續修復一些顯示問題，慢慢優化推進版本。</div>
+          </div>
+          <div class="proj-tline-item">
+            <span class="proj-tline-date">2025.10.02～03</span>
+            <div class="proj-tline-title">多服務整合</div>
+            <div class="proj-tline-body">將很多自己自架的服務整合進主站，例如 Nextcloud 和 Openwebui ；新增帳號中心入口並且開始嘗試實踐 sso 登入。</div>
+          </div>
+          <div class="proj-tline-item">
+            <span class="proj-tline-date">2025.10.05</span>
+            <div class="proj-tline-title">v1.3.30 視覺強化</div>
+            <div class="proj-tline-body">新增頁面載入動畫與頭像懸停動畫設計，是視覺體驗改變幅度不小的一次迭代。</div>
+          </div>
+          <div class="proj-tline-item proj-tline-item--pause">
+            <span class="proj-tline-date">2025.10～2026.01</span>
+            <div class="proj-tline-title">// 備考暫停</div>
+            <div class="proj-tline-body">學測備考期間，專案停止更新，歷時約 4 個月。</div>
+          </div>
+          <div class="proj-tline-item">
+            <span class="proj-tline-date">2026.02.06</span>
+            <div class="proj-tline-title">v2.0.0 版本更替</div>
+            <div class="proj-tline-body">舊版正式標記 v2.0.0 並且停止開發；新增 Status 頁面跳轉至 status.irukatun.dev。</div>
+          </div>
+          <div class="proj-tline-item proj-tline-item--wip">
+            <span class="proj-tline-date">2026.03.19 ▸</span>
+            <div class="proj-tline-title">Remake 進行中</div>
+            <div class="proj-tline-body">舊版頁面棄用進入了維護模式，新版本漸漸的製作到後期，將服務入口脫離主站，根網域以個人品牌敘事為核心，使用了大量動畫設計動畫、互動終端機彩蛋、思維地圖導覽等全新功能（即本站）。</div>
+          </div>
+        </div>
+        <a href="#" class="proj-blog-link">深入了解 →</a>
+      </div>
+    </div>
+
+    <div class="proj-row proj-row--reverse">
+      <div class="proj-visual pt2" data-img="img/proj_desktop_assistant.jpg"><div class="proj-visual-inner pt2"></div></div>
+      <div class="proj-body">
+        <div class="proj-name">智慧桌上小助理</div>
+        <p class="proj-desc">高中自主學習跨學期專題。以 ESP32-S3 為核心，整合觸控螢幕、PIR 感測、動態感測、麥克風、喇叭、RTC、SD 卡等多項零件，期望開發可常駐書桌的智慧互動裝置。目前的進度為完成大部分硬體的驅動，實際互動功能正在加緊開發中。</p>
+        <div class="proj-tline">
+          <div class="proj-tline-item">
+            <span class="proj-tline-date">2025.01</span>
+            <div class="proj-tline-title">Arduino 初探</div>
+            <div class="proj-tline-body">高二上因為選修課程接觸到 Arduino 而對嵌入式開發感到興趣，在學期末規劃了一個專題的構想，當初是先以 Arduino IDE 完成 ESP32 整合 MPU6050、PIR 與觸控螢幕的即時顯示；在1月底進行大量零件個別測試，建立了不少的開發基礎。</div>
+          </div>
+          <div class="proj-tline-item proj-tline-item--xref">
+            <span class="proj-tline-date">2025.02～05</span>
+            <div class="proj-tline-title">動作辨識模組探索</div>
+            <div class="proj-tline-body">該專案其中的擴展功能開發，詳見下方作品”動作辨識模型訓練“。</div>
+          </div>
+          <div class="proj-tline-item">
+            <span class="proj-tline-date">2025.06</span>
+            <div class="proj-tline-title">遷移至 ESP-IDF</div>
+            <div class="proj-tline-body">與AI進行了極為深度的規劃構想，考慮到 Arduino IDE 有可能難以支撐後續功能規模，決定遷移至 VSCode + ESP-IDF 並完整重寫程式，嘗試開始接觸一個自己完全沒有碰過的領域；GitHub 已關閉的倉庫 SmartAssistant_old 就是當時過渡練習的專案，自己研究完成環境建置與 Wi-Fi 連線後確立我的方案可行性。</div>
+          </div>
+          <div class="proj-tline-item">
+            <span class="proj-tline-date">2025.07.15</span>
+            <div class="proj-tline-title">專案正式啟動</div>
+            <div class="proj-tline-body">確立以 ESP32-S3-N16R8 為核心的硬體方案，建立 ESP-IDF 開發環境。</div>
+          </div>
+          <div class="proj-tline-item">
+            <span class="proj-tline-date">2025.07.16～17</span>
+            <div class="proj-tline-title">首次點亮螢幕</div>
+            <div class="proj-tline-body">接入 ILI9488 螢幕驅動，成功在好多小時的debug後顯示開機文字；修正文字鏡像問題，成功開機並進入主畫面！</div>
+          </div>
+          <div class="proj-tline-item">
+            <span class="proj-tline-date">2025.07.18～21</span>
+            <div class="proj-tline-title">基礎感測整合</div>
+            <div class="proj-tline-body">完成 DS3231 即時時鐘、PIR 人體感測器（HC-SR505）、MPU-6050 碰觸與搖晃偵測，初版功能完整運作。</div>
+          </div>
+          <div class="proj-tline-item proj-tline-item--pause">
+            <span class="proj-tline-date">2025.08～2026.1</span>
+            <div class="proj-tline-title">// 備考暫停</div>
+            <div class="proj-tline-body">學測備考，專案暫停期間。</div>
+          </div>
+          <div class="proj-tline-item">
+            <span class="proj-tline-date">2026.02.02～04</span>
+            <div class="proj-tline-title">重啟專案</div>
+            <div class="proj-tline-body">中文化所有串口日誌輸出、精簡大量的代碼；修正 RTC 運作機制；重構顯示模組，重新理解了運作邏輯，並補齊繁體中文註解。</div>
+          </div>
+          <div class="proj-tline-item">
+            <span class="proj-tline-date">2026.02.05</span>
+            <div class="proj-tline-title">效能優化嘗試</div>
+            <div class="proj-tline-body">把螢幕 GPIO 改為 IOMUX 直連，SPI 頻率調升至 60 MHz，導入 LVGL 雙緩衝機制消除畫面撕裂，重設計 I2C 匯流排接線等等讓架構更清晰。</div>
+          </div>
+          <div class="proj-tline-item">
+            <span class="proj-tline-date">2026.02.06</span>
+            <div class="proj-tline-title">觸控驅動成功</div>
+            <div class="proj-tline-body">新增 XPT2046 觸控驅動支援；優化啟動流程與 UI 字型；精簡開機序列顯示更新邏輯。</div>
+          </div>
+          <div class="proj-tline-item">
+            <span class="proj-tline-date">2026.02.07</span>
+            <div class="proj-tline-title">Wi-Fi 與分區架構</div>
+            <div class="proj-tline-body">實作了 Wi-Fi 連線功能；規劃了分區用於以後可能的 OTA 更新（為後續遠端升級鋪路）；修改 RTC 時間初始化邏輯與基於 NVS 的版本控制；實作開機畫面版本號顯示。</div>
+          </div>
+          <div class="proj-tline-item">
+            <span class="proj-tline-date">2026.02.10</span>
+            <div class="proj-tline-title">電路文件與開機警告</div>
+            <div class="proj-tline-body">新增完整電路接線圖及詳細接線表；新增開機異常警告功能，可顯示 NVS／RTC 異常重置原因。</div>
+          </div>
+          <div class="proj-tline-item">
+            <span class="proj-tline-date">2026.02.11～13</span>
+            <div class="proj-tline-title">繁體中文介面</div>
+            <div class="proj-tline-body">導入繁體中文字體，全面中文化 UI 所有顯示文字；修正螢幕顯示方向、觸控鏡像問題；統一 WiFi 狀態中文描述。</div>
+          </div>
+          <div class="proj-tline-item">
+            <span class="proj-tline-date">2026.02.14</span>
+            <div class="proj-tline-title">感測擴充 v1.0.4</div>
+            <div class="proj-tline-body">觸控升級為官方 IRQ 中斷模式，優化 SPI 總線的效率；整合 INMP441 麥克風模組；接入天氣 API，顯示即時氣溫與降雨機率；修復大量隱藏邏輯問題。</div>
+          </div>
+          <div class="proj-tline-item">
+            <span class="proj-tline-date">2026.02.16</span>
+            <div class="proj-tline-title">穩定性修復</div>
+            <div class="proj-tline-body">修復 WiFi 配網流程不穩定問題；修復觸控相關邏輯的缺陷，提升整體操作可靠性。</div>
+          </div>
+          <div class="proj-tline-item proj-tline-item--wip">
+            <span class="proj-tline-date">2026.02.25 ▸</span>
+            <div class="proj-tline-title">SD 卡驅動測試中</div>
+            <div class="proj-tline-body">成功驅動 SD 卡模組；目前正在處理 SD 卡與麥克風可能的DMA衝突問題。（SD載入麥克風就會無反應）</div>
+          </div>
+        </div>
+        <a href="#" class="proj-blog-link">深入了解 →</a>
+      </div>
+    </div>
+
+    <div class="proj-row">
+      <div class="proj-visual pt3" data-img="img/proj_model_training.png"><div class="proj-visual-inner pt3"></div></div>
+      <div class="proj-body">
+        <div class="proj-name">動作辨識模型訓練</div>
+        <p class="proj-desc">高中自主學習專題的子功能。基於Google Teachable Machine 的圖像動作辨識，為解決智慧小助理中動作紀錄的需求，嘗試多種方案後選定訓練圖像分類模型，該實作後續登上校內自主學習動態展，並且授權學校行政老師們帶去與對岸復旦中學作為自主學習案例交流。</p>
+        <div class="proj-tline">
+          <div class="proj-tline-item">
+            <span class="proj-tline-date">2025.02</span>
+            <div class="proj-tline-title">多方案探索</div>
+            <div class="proj-tline-body">因為想做到小助理可以接近喚醒，構想了紅外感應、超聲波雷達、後端多模態大模型看圖回傳 API 等等的方案，均因資源消耗或準確度不理想而放棄，最終決定要自己訓練一個動作辨識模型並開始尋找解決方法。</div>
+          </div>
+          <div class="proj-tline-item">
+            <span class="proj-tline-date">2025.02～04</span>
+            <div class="proj-tline-title">資料蒐集與初次訓練</div>
+            <div class="proj-tline-body">選定 Teachable Machine（MobileNet 遷移學習），自行拍攝訓練資料；初版發現嚴重過擬合，數百張格式不一的照片直接報廢，重新規劃蒐集方式。</div>
+          </div>
+          <div class="proj-tline-item">
+            <span class="proj-tline-date">2025.03～05</span>
+            <div class="proj-tline-title">多輪迭代改善</div>
+            <div class="proj-tline-body">以 Human in the Loop 方式在家中與學校多場景補充資料；進行數十近百次全量訓練，總訓練集近千張；調整至 14 epochs 取得穩定收斂。</div>
+          </div>
+          <div class="proj-tline-item">
+            <span class="proj-tline-date">2025.05初</span>
+            <div class="proj-tline-title">邊緣推論可行性驗證</div>
+            <div class="proj-tline-body">因為蝦皮上看到很便宜的 Orange Pi One 因此購買下來研究，使用 Armbian Linux 嘗試測試能不能跑起小模型，還因為房間沒有網路線所以嘗試手動編譯了 Wi-Fi 驅動、建立 Python 推論環境；確認可連網並執行 ONNX 模型推論。規劃未來整合到小助理的專案裡面</div>
+          </div>
+          <div class="proj-tline-item">
+            <span class="proj-tline-date">2025.08</span>
+            <div class="proj-tline-title">校內自主學習動態展</div>
+            <div class="proj-tline-body">於校內自主學習動態展上台發表，在全校 500 多名師生面前展示動作辨識模型的開發歷程與成果。</div>
+          </div>
+          <div class="proj-tline-item proj-tline-item--wip">
+            <span class="proj-tline-date">2025.09 ▸</span>
+            <div class="proj-tline-title">學術案例交流</div>
+            <div class="proj-tline-body">授權學校行政教師將本專案帶往與對岸復旦中學的學術交流場合，作為自主學習案例進行分享。</div>
+          </div>
+        </div>
+        <a href="#" class="proj-blog-link">深入了解 →</a>
+      </div>
+    </div>
+
+    <div class="proj-row proj-row--reverse">
+      <div class="proj-visual pt4" data-img="img/proj_dreos_server.png"><div class="proj-visual-inner pt4"></div></div>
+      <div class="proj-body">
+        <div class="proj-name">Minecraft 伺服器經營</div>
+        <p class="proj-desc">Minecraft 伺服器幾乎可以說是我的 SRE（可靠性工程）的啟蒙教材，從喜歡和朋友一起玩，直到開始研究伺服器，近而累積了大量的的網路知識還有各式各樣的運維經驗。</p>
+        <div class="proj-tline">
+          <div class="proj-tline-item">
+            <span class="proj-tline-date">2024.07</span>
+            <div class="proj-tline-title">首次開服</div>
+            <div class="proj-tline-body">一個很特別的暑假，我為了和網路上的朋友一起玩 Minecraft 模組，架設了第一台伺服器；首次摸索伺服器架設、網路配置與防火牆設定奠定我不少基礎。後來暑假結束就暫停了。</div>
+          </div>
+          <div class="proj-tline-item">
+            <span class="proj-tline-date">2025.01</span>
+            <div class="proj-tline-title">充滿夢想的”夢的起源伺服器“</div>
+            <div class="proj-tline-body">寒假重新開服，因為太想要各式各樣功能了，用了一個名為 Mohist 的伺服器核心，同時支援插件與模組；雖然遇到大量相容性問題，整個假期邊除錯邊迭代自己幾乎沒有玩到，但是這樣的整活我還是很沉浸的，後來穩定運行了一個月，開學後才暫停。</div>
+          </div>
+          <div class="proj-tline-item">
+            <span class="proj-tline-date">2025.07～09</span>
+            <div class="proj-tline-title">切換核心穩紮穩打</div>
+            <div class="proj-tline-body">暑假第三次開服，放棄混合方案改以純 Fabric 穩定運行，一路經營至九月；一樣是因為學業所以在暑假後因為備考暫停。</div>
+          </div>
+          <div class="proj-tline-item proj-tline-item--wip">
+            <span class="proj-tline-date">2026.03.30 ▸</span>
+            <div class="proj-tline-title">Lunar Illusion Server</div>
+            <div class="proj-tline-body">帶著過去積累的運維經驗，以最穩定最廣泛的伺服器核心 Paper 熟練的建立了新的伺服器，和班上與舊識的 20 名同學和朋友加入，目前幾乎每天都在持續更新新功能！</div>
+          </div>
+        </div>
+        <a href="#" class="proj-blog-link">深入了解 →</a>
+      </div>
+    </div>
+
+  </div>
+  <div class="section-bridge">
+    <span class="bridge-txt">THE END</span>
+    <span class="bridge-sub">想要了解更多？</span>
+    <div class="bridge-line"></div>
+  </div>
+</section>
+
+<!-- IMAGE LIGHTBOX -->
+<div id="lightbox-backdrop"></div>
+<div id="lightbox">
+  <button id="lightbox-close" aria-label="關閉">✕</button>
+  <img id="lightbox-img" src="" alt="作品圖片放大檢視"/>
+</div>
+
+<!-- CERT MODAL -->
+<div id="cert-modal-backdrop"></div>
+<div id="cert-modal">
+  <div class="modal-close-hint"></div>
+  <div class="modal-tag" id="cert-modal-tag"></div>
+  <div class="modal-title" id="cert-modal-title"></div>
+  <div class="cert-modal-meta" id="cert-modal-meta"></div>
+  <div id="cert-modal-content"></div>
+</div>
+
+<!-- ══════════════════════════════════
+     SITE MAP — 思維地圖 · 站點導覽
+     ══════════════════════════════════ -->
+<section id="sitemap">
+  <h4 class="smap-corner-label">思 維 地 圖 &nbsp;·&nbsp; <span>MIND MAP</span></h4>
+  <button id="smap-theme-btn" aria-label="切換深色模式"></button>
+  <div id="smap-flash"></div>
+  <div id="smap-viewport">
+    <div id="smap-canvas">
+      <svg id="smap-svg" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <filter id="smap-glow" x="-2%" y="-8%" width="104%" height="116%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+      </svg>
+      <!-- nodes injected by JS -->
+    </div>
+  </div>
+  <div id="smap-hud">
+    <div id="smap-trail"></div>
+    <span class="smap-hud-sep">·</span>
+    <span id="smap-hud-label">ORIGIN</span>
+  </div>
+  <div id="smap-footer">
+    <div id="smap-footer-license" aria-hidden="true">
+      <p>本網站已開源於 GitHub-Irukatun</p>
+      <p>原始碼授權: AGPL-3.0</p>
+      <p>內容 / 設計授權: CC BY-NC-SA 4.0</p>
+      <p>歡迎用於學習借鑑!但豚豚不太希望被抄襲</p>
+      <p>所以要記得遵守條款並註記原作者噢</p>
+    </div>
+    <div id="smap-footer-panel" aria-hidden="true">
+      <p>特別感謝 Justfont 提供好看的開源字體!</p>
+      <p>字體: Jf Open 粉圓 by Justfont</p>
+      <p>授權: SIL Open Font License 1.1</p>
+    </div>
+    <p class="smap-copyright" id="smap-copyright-btn" role="button" tabindex="0"><span class="smap-copyright-main">© 2025 irukatun.dev</span><span class="smap-copyright-hint">點擊查看版權說明</span></p>
+  </div>
+</section>
+
+<script src="js/main.js"></script>
+
+</body>
+</html>
