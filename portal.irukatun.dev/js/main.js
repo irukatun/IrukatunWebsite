@@ -55,32 +55,35 @@ for (let i = 0; i < TRAIL; i++) {
   if (!section) return;
 
   // ── Node data ────────────────────────────────────────────
-  // Layout mirrors www.irukatun.dev sitemap:
-  //   origin at (1500,1500); 4 main nodes at ±750x ±700y (diagonal corners);
-  //   leaf children spread ~550px further from their hub.
+  // 5 spokes radiate from origin (1500,1500) at equal 72° intervals, r=1000.
+  // Starting at 270° (top, www), clockwise: lucillaai(342°), others(54°), status(126°), mc(198°).
+  // Leaf children fan ±36° from their hub's spoke direction, r=570.
   const NODES = [
     // ── Centre ──────────────────────────────────────────────
-    { id:'origin',    tag:'PORTAL',    title:'服務入口',  sub:'選擇一個你所需要的',         x:1500, y:1500, color:'#4aaed4', type:'origin', connects:['mc','lucillaai','status','others'] },
+    { id:'origin',    tag:'PORTAL',    title:'服務入口',  sub:'選擇一個你所需要的',         x:1500, y:1500, color:'#4aaed4', type:'origin', connects:['www','mc','lucillaai','status','others'] },
 
-    // ── Upper-left: Lunar Illusion MC hub ───────────────────
-    // Children spread upward in Y-shape: Δ(±550, -600) — mirrors original contact→email/discord
-    { id:'mc',        tag:'MINECRAFT', title:'Lunar Illusion 伺服器',    sub:'Lunar Illusion Server', x:750,  y:800,  color:'#5eae47', type:'hub',    connects:['origin','luni','lunimap'] },
-    { id:'luni',      tag:'Lunar Illusion',      title:'官方網站',        sub:'伺服器官網 · 籌備中',   x:200,  y:200,  color:'#5eae47', type:'portal', url:null,                            access:'public',  connects:['mc'] },
-    { id:'lunimap',   tag:'LUNIMAP',   title:'即時 3D 地圖',              sub:'BlueMap', x:1300, y:200,  color:'#5eae47', type:'portal', url:'https://lunimap.irukatun.dev',  access:'public',  connects:['mc'] },
+    // ── 270° Top: 個人主網站 ────────────────────────────────
+    { id:'www',       tag:'WEBSITE',   title:'豚豚的個人網站',  sub:'irukatun.dev',               x:1500, y:500,  color:'#f5c542', type:'portal', url:'https://www.irukatun.dev',      access:'public',  connects:['origin'] },
 
-    // ── Upper-right: LucillaAI hub ──────────────────────────
-    // Children spread upward in Y-shape: Δ(±550, -600)
-    { id:'lucillaai', tag:'LUCILLA AI', title:'Lucilla AI 小鹿熙',         sub:'小鹿熙人工智慧工作室',        x:2250, y:800,  color:'#b57bf0', type:'hub',    connects:['origin','lucilla','llamacpp'] },
-    { id:'lucilla',   tag:'Prompt Engineering',   title:'提示詞工程中心',             sub:'SillyTavern', x:1700, y:200, color:'#b57bf0', type:'portal', url:'https://sillytavern.irukatun.dev',  access:'private', connects:['lucillaai'] },
-    { id:'llamacpp',  tag:'LLAMACPP',  title:'推理運算後端',                   sub:'llama.cpp',     x:2800, y:200,  color:'#b57bf0', type:'portal', url:'https://llamacpp.irukatun.dev', access:'private', connects:['lucillaai'] },
+    // ── 198° Upper-left: Lunar Illusion MC hub ──────────────
+    // Children fan at 162° (luni) and 234° (lunimap), r=570
+    { id:'mc',        tag:'MINECRAFT', title:'Lunar Illusion 伺服器',    sub:'Lunar Illusion Server', x:549,  y:1191, color:'#5eae47', type:'hub',    connects:['origin','luni','lunimap'] },
+    { id:'luni',      tag:'Lunar Illusion',      title:'官方網站',        sub:'伺服器官網 · 籌備中',   x:7,    y:1367, color:'#5eae47', type:'portal', url:null,                            access:'public',  connects:['mc'] },
+    { id:'lunimap',   tag:'LUNIMAP',   title:'即時 3D 地圖',              sub:'BlueMap',               x:214,  y:730,  color:'#5eae47', type:'portal', url:'https://lunimap.irukatun.dev',  access:'public',  connects:['mc'] },
 
-    // ── Lower-left: Status (standalone) ─────────────────────
-    { id:'status',    tag:'STATUS',    title:'Status 狀態中心',  sub:'Uptime Kuma',             x:750,  y:2200, color:'#34d399', type:'portal', url:'https://status.irukatun.dev',   access:'public',  connects:['origin'] },
+    // ── 342° Upper-right: LucillaAI hub ─────────────────────
+    // Children fan at 306° (lucilla) and 18° (llamacpp), r=570
+    { id:'lucillaai', tag:'LUCILLA AI', title:'Lucilla AI 小鹿熙',        sub:'小鹿熙人工智慧工作室',   x:2451, y:1191, color:'#b57bf0', type:'hub',    connects:['origin','lucilla','llamacpp'] },
+    { id:'lucilla',   tag:'Prompt Engineering',   title:'提示詞工程中心',  sub:'SillyTavern',           x:2786, y:730,  color:'#b57bf0', type:'portal', url:'https://sillytavern.irukatun.dev',  access:'private', connects:['lucillaai'] },
+    { id:'llamacpp',  tag:'LLAMACPP',  title:'推理運算引擎',               sub:'llama.cpp',             x:2993, y:1367, color:'#b57bf0', type:'portal', url:'https://llamacpp.irukatun.dev', access:'private', connects:['lucillaai'] },
 
-    // ── Lower-right: 其他服務 hub ────────────────────────────
-    // ── Lower-right: 其他服務 hub (single child, goes directly downward) ──
-    { id:'others',    tag:'OTHERS',    title:'其他',              sub:'其他獨立服務',             x:2250, y:2200, color:'#8888aa', type:'hub',    connects:['origin','vocard'] },
-    { id:'vocard',    tag:'MUSIC DASH',    title:'DC音樂控制台',  sub:'Vocard',   x:2800, y:2800, color:'#8888aa', type:'portal', url:'https://vocard.irukatun.dev',   access:'private', connects:['others'] },
+    // ── 126° Lower-left: Status (standalone) ────────────────
+    { id:'status',    tag:'STATUS',    title:'Status 狀態中心',  sub:'Uptime Kuma',             x:912,  y:2309, color:'#34d399', type:'portal', url:'https://status.irukatun.dev',   access:'public',  connects:['origin'] },
+
+    // ── 54° Lower-right: 其他服務 hub ───────────────────────
+    // Child continues along 54°, r=620
+    { id:'others',    tag:'OTHERS',    title:'其他',              sub:'其他獨立服務',             x:2088, y:2309, color:'#f07050', type:'hub',    connects:['origin','vocard'] },
+    { id:'vocard',    tag:'MUSIC DASH',    title:'DC 音樂控制台',  sub:'Vocard',                   x:2453, y:2811, color:'#f07050', type:'portal', url:'https://vocard.irukatun.dev',   access:'private', connects:['others'] },
   ];
   const nodeMap = {};
   NODES.forEach(n => nodeMap[n.id] = n);
@@ -88,6 +91,10 @@ for (let i = 0; i < TRAIL; i++) {
   // ── State ─────────────────────────────────────────────────
   let currentId  = 'origin';
   let navHistory = ['origin'];
+  let zoomLevel  = 1.0;
+  const ZOOM_MIN  = 0.40;
+  const ZOOM_MAX  = 1.90;
+  const ZOOM_STEP = 0.15;
 
   // ── DOM refs ──────────────────────────────────────────────
   const viewport = document.getElementById('smap-viewport');
@@ -186,13 +193,19 @@ for (let i = 0; i < TRAIL; i++) {
   // ── Navigation ────────────────────────────────────────────
   function panTo(id, animate = true) {
     const n  = nodeMap[id];
-    const tx = viewport.offsetWidth  / 2 - n.x;
-    const ty = viewport.offsetHeight / 2 - n.y;
+    const tx = viewport.offsetWidth  / 2 - n.x * zoomLevel;
+    const ty = viewport.offsetHeight / 2 - n.y * zoomLevel;
     if (animate) {
-      gsap.to(canvas, { x: tx, y: ty, duration: 1.1, ease: 'power3.inOut' });
+      gsap.to(canvas, { x: tx, y: ty, scale: zoomLevel, duration: 1.1, ease: 'power3.inOut' });
     } else {
-      gsap.set(canvas, { x: tx, y: ty });
+      gsap.set(canvas, { x: tx, y: ty, scale: zoomLevel });
     }
+  }
+
+  function setZoom(z, animate = true) {
+    zoomLevel = Math.max(ZOOM_MIN, Math.min(ZOOM_MAX, Math.round(z * 100) / 100));
+    document.getElementById('smap-zoom-level').textContent = Math.round(zoomLevel * 100) + '%';
+    panTo(currentId, animate);
   }
 
   function navigateTo(id) {
@@ -271,6 +284,7 @@ for (let i = 0; i < TRAIL; i++) {
       d.className = 'smap-trail-dot' + (i === navHistory.length - 1 ? ' active' : '');
       trail.appendChild(d);
     });
+    document.getElementById('smap-trail-mirror').innerHTML = trail.innerHTML;
   }
 
   function rebuildBtns(nodeId) {
@@ -341,6 +355,25 @@ for (let i = 0; i < TRAIL; i++) {
     if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); copyrightBtn.click(); }
   });
 
+  // ── Zoom controls ─────────────────────────────────────────
+  gsap.set(canvas, { transformOrigin: '0 0' });
+
+  document.getElementById('smap-zoom-in').addEventListener('click',    () => setZoom(zoomLevel + ZOOM_STEP));
+  document.getElementById('smap-zoom-out').addEventListener('click',   () => setZoom(zoomLevel - ZOOM_STEP));
+  document.getElementById('smap-zoom-level').addEventListener('click', () => setZoom(1.0));
+
+  viewport.addEventListener('wheel', e => {
+    e.preventDefault();
+    setZoom(zoomLevel + (e.deltaY > 0 ? -ZOOM_STEP : ZOOM_STEP) * 0.7, false);
+  }, { passive: false });
+
+  document.addEventListener('keydown', e => {
+    if (!(e.ctrlKey || e.metaKey)) return;
+    if (e.key === '=' || e.key === '+') { e.preventDefault(); setZoom(zoomLevel + ZOOM_STEP); }
+    else if (e.key === '-')             { e.preventDefault(); setZoom(zoomLevel - ZOOM_STEP); }
+    else if (e.key === '0')             { e.preventDefault(); setZoom(1.0); }
+  });
+
   // ── Init ──────────────────────────────────────────────────
   buildLines();
   buildNodes();
@@ -352,6 +385,7 @@ for (let i = 0; i < TRAIL; i++) {
   gsap.set('.smap-node:not(#smap-n-origin)', { opacity: 0, scale: 0.88 });
   gsap.set('.smap-corner-label',             { opacity: 0 });
   gsap.set('#smap-hud',                      { opacity: 0, y: 8 });
+  gsap.set('#smap-zoom',                     { opacity: 0, y: 8 });
   gsap.set('#smap-footer',                   { opacity: 0, y: 10 });
 
   gsap.to('#smap-n-origin', {
@@ -367,6 +401,7 @@ for (let i = 0; i < TRAIL; i++) {
       });
       gsap.to('.smap-corner-label', { opacity: 1, duration: 0.5, delay: 0.2 });
       gsap.to('#smap-hud',          { opacity: 1, y: 0, duration: 0.5, delay: 0.3 });
+      gsap.to('#smap-zoom',         { opacity: 1, y: 0, duration: 0.5, delay: 0.35 });
       gsap.to('#smap-footer',       { opacity: 1, y: 0, duration: 0.5, delay: 0.4 });
       setTimeout(() => updateUI(), 1800);
     }
@@ -381,11 +416,14 @@ for (let i = 0; i < TRAIL; i++) {
   function applyTheme(dark) {
     root.setAttribute('data-theme', dark ? 'dark' : 'light');
     smapBtn.setAttribute('aria-label', dark ? '切換淺色模式' : '切換深色模式');
-    localStorage.setItem('theme', dark ? 'dark' : 'light');
   }
 
   smapBtn.addEventListener('click', () => {
     applyTheme(root.getAttribute('data-theme') !== 'dark');
+  });
+
+  window.matchMedia('(prefers-color-scheme:dark)').addEventListener('change', e => {
+    applyTheme(e.matches);
   });
 
   smapBtn.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));

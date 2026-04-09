@@ -23,7 +23,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Huninn&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="css/style.css"/>
-<script>(function(){var t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);document.documentElement.classList.add('nav-locked');})();</script>
+<script>(function(){var t=window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);document.documentElement.classList.add('nav-locked');})();</script>
 <style>
 /* FOUC prevention — matches GSAP initial states so elements never flash visible */
 #hero-mono-text{transform:translateY(110%);}
@@ -126,9 +126,10 @@ html.nav-locked .nav-links,html.nav-locked .nav-hamburger{opacity:0;pointer-even
     <div class="about-right" id="about-right">
       <p>哈柔！我是Irukatun</p>
       <p>iruka是日文的海豚而tun是中文的海豚，所以，你也可以叫我豚豚！</p>
-      <p>國中開始研究硬體、13歲那年自己從配單到組裝了人生第一台電腦，開啟了我的開發之路，高中因緣際會接觸到校內的Arduino課程而開始步入嵌入式的領域，然後越走越深——網頁、開發板、AI等等...各種有興趣的東東都碰了一輪。</p>
-      <p>我喜歡把東西從零搭建起來——從最底層的韌體一路寫到最頂層瀏覽器的前端，再用伺服器或雲計算平台把它部署起來。比起用框架組積木，我更想知道底層發生了什麼！</p>
-      <p class="about-tagline">// Build it. Break it. Understand it.</p>
+      <p>從國中開始研究各種硬體、13歲那年自己從配單到組裝一手包辦了人生中第一台自己的電腦，從此開啟了我的開發之路，在高中因緣際會接觸到校內的Arduino課程而開始步入嵌入式的領域，然後越走越深 —— 網站、開發板、AI等等...把各種有興趣的東東都碰了一輪。</p>
+      <p>我喜歡把東西搭建起來——從最底層的韌體一路寫到最頂層網頁前端，用自己的伺服器或是雲計算平台把它部署起來。為了興趣熬過無數的日夜，用各種東西構建出我心目中的夢想世界，就是我最大的快樂！</p>
+      <p class="about-tagline">// つくって、こわして、なるほどね .ᐟ.ᐟ</p>
+      <p class="about-tagline">// Build it. Break it. Understand it</p>
     </div>
   </div>
 </section>
@@ -146,26 +147,25 @@ html.nav-locked .nav-links,html.nav-locked .nav-hamburger{opacity:0;pointer-even
       <div class="skill-label"><span class="domain-icon">🌐</span>網頁前端</div>
       <div class="skill-tags">
         <span class="stag" data-tip="本站即基於 HTML5 + CSS3 構建">HTML｜CSS</span>
-        <span class="stag" data-tip="互動功能及彩蛋皆以 Vanilla JS (ES2020+) 完成">Vanilla JS</span>
-        <span class="stag" data-tip="全站動畫和特效用 GSAP 3.13.0 動畫引擎驅動">GSAP</span>
+        <span class="stag" data-tip="互動功能及彩蛋皆以 Vanilla JS 完成">Vanilla JS</span>
+        <span class="stag" data-tip="全站好看的動畫和特效就是用 GSAP 動畫引擎驅動">GSAP</span>
       </div>
     </div>
     <div class="skill-row">
       <div class="skill-label"><span class="domain-icon">⚙️</span>後端/部署</div>
       <div class="skill-tags">
-        <span class="stag" data-tip="Iruka Drive、Iruka Status之類的自架服務都容器化跑在 Docker 裡面">Docker Compose</span>
-        <span class="stag" data-tip="豚豚最拿手的競賽程式語言，建置時用於大部分的後端自定義 API">Python</span>
-        <span class="stag" data-tip="部分服務是基於 SQLite、MariaDB 等關聯式資料存儲層的">Relational Database</span>
-        <span class="stag" data-tip="用於小部分服務的記憶體快取，優化使用者的體驗">Redis</span>
+        <span class="stag" data-tip="Iruka Music Bot、Iruka Status之類的自架服務都跑在 Docker 裡面">Docker Compose</span>
+        <span class="stag" data-tip="豚豚唯一拿的出手的競賽程式語言">Python</span>
+        <span class="stag" data-tip="不能算親手用過，不過部分服務是基於 SQLite、MongoDB 的，所以就提一下吧，免得這裡太空了(誤">Relational Database</span>
       </div>
     </div>
     <div class="skill-row">
       <div class="skill-label"><span class="domain-icon">🔧</span>嵌入式</div>
       <div class="skill-tags">
-        <span class="stag" data-tip="我 GitHub 上的智慧小助理專題就是用這個開發的，基於 VSCode + ESP-IDF 5.5.3">ESP-IDF</span>
-        <span class="stag" data-tip="嵌入式的首選語言，雖然一直被記憶體搞到，所以未來能力變強以後考慮用 Rust 取代掉他">C</span>
+        <span class="stag" data-tip="我的智慧小助理專題就是用這個開發的，基於 VSCode + ESP-IDF">ESP-IDF</span>
+        <span class="stag" data-tip="嵌入式的首選語言，雖然一直被記憶體搞到，所以未來能力變強以後考慮用 Rust 取代掉他?">C</span>
         <span class="stag" data-tip="這是我人生第一次接觸並行程式設計的地方，第一次體驗什麼是多線程、什麼是一核有難多核圍觀的地方">FreeRTOS</span>
-        <span class="stag" data-tip="智慧小助理整個介面的美化工程都是基於它">LVGL</span>
+        <span class="stag" data-tip="智慧小助理整個介面的美化工程都是基於它(雖然現在還沒開始做好看的UI就是了ouo)">LVGL</span>
         <span class="stag" data-tip="智慧小助理的螢幕（SPI）、麥克風和喇叭（I2S）、感測器（I2C）通通靠這些協定串在一起">Serial Protocols</span>
         <span class="stag" data-tip="聽說沒處理過 DMA 問題的不算真正的嵌入式工程師 —— 愛因斯坦，沒有說過">DMA</span>
         <span class="stag" data-tip="蝦皮兩張 360 還送外殼和風扇，不買對不起自己">Orange Pi</span>
@@ -176,8 +176,8 @@ html.nav-locked .nav-links,html.nav-locked .nav-hamburger{opacity:0;pointer-even
       <div class="skill-label"><span class="domain-icon">🧠</span>AI / ML</div>
       <div class="skill-tags">
         <span class="stag" data-tip="一個很不錯的推理框架，曾經想參與 Issue #20225 的 SSM cache 問題，但礙於自己太菜了，只敢隔岸觀火">llama.cpp</span>
-        <span class="stag" data-tip="我曾經的 RX6600 被 AMD 遺棄不給 ROCm，在 release 還沒有 Vulkan 的年代靠自己編譯後端讓它跑起來">Vulkan</span>
-        <span class="stag" data-tip="小鹿熙（Lucilla）就是靠 Qwen3 27B 的 ChatML 提示詞工程寫出來的">Prompt Engineering</span>
+        <span class="stag" data-tip="我曾經的 RX6600 被 AMD 遺棄不給 ROCm，在 lmcpp release 還沒有 Vulkan 的年代靠自己編譯後端讓它跑起來">Vulkan</span>
+        <span class="stag" data-tip="最初的小鹿熙（Lucilla）就是靠 Qwen3.5-27B 的 ChatML 提示詞工程寫出來的">Prompt Engineering</span>
         <span class="stag" data-tip="智慧小助理的動作辨識模型就是基於這個，雖然很方便快速，不過還是需要大量的資料蒐集效果才會比較好">Google Teachable Machine</span>
       </div>
     </div>
@@ -185,9 +185,9 @@ html.nav-locked .nav-links,html.nav-locked .nav-hamburger{opacity:0;pointer-even
       <div class="skill-label"><span class="domain-icon">🖥️</span>基礎建設</div>
       <div class="skill-tags">
         <span class="stag" data-tip="一個沒有太多包袱而且架構很直觀的系統，維護起來比 Windows 輕鬆而且自由多了">Linux</span>
-        <span class="stag" data-tip="賽博活佛">Cloudflare Access (OAuth)</span>
-        <span class="stag" data-tip="SSH、RDP、Moonlight 的必備品，隨時隨地遠端開發，打開平板就能距離百公里回到熟悉的開發環境">ZeroTier</span>
-        <span class="stag" data-tip="永久免費的 e2-micro，不拿白不拿">GCP</span>
+        <span class="stag" data-tip="賽博活佛，沒有他我都不敢上線網站">Cloudflare Access (OAuth)</span>
+        <span class="stag" data-tip="SSH、RDP、Moonlight 的必備品，隨時隨地遠端開發，打開平板就能距離百公里(?)回到熟悉的開發環境">ZeroTier</span>
+        <span class="stag" data-tip="永久免費的 e2-micro，不拿白不拿(Google有種就別收網路費)">GCP</span>
         <span class="stag" data-tip="為了讓對岸一起玩MC的朋朋繞開對岸直連海纜不穩的問題，特地在日本架了一個 FRP 節點">FRP</span>
         <span class="stag" data-tip="豚豚的 SRE 啟蒙教材">Minecraft Server</span>
       </div>

@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /img/favicon.png
+Disallow: /img/

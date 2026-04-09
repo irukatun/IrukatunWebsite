@@ -16,7 +16,7 @@
   --fs-h2:2.3rem;
   --fs-h3:1.15rem;
   --fs-h4:.85rem;
-  --fs-h5:.75rem;
+  --fs-h5:.68rem;
 }
 
 [data-theme="dark"]{
@@ -169,6 +169,7 @@ h5{font-size:var(--fs-h5);font-weight:400;}
 
 .chip{
   display:inline-block;
+  font-size:var(--fs-h5);
   padding:.28rem .85rem;border-radius:2rem;
   letter-spacing:.04em;font-weight:400;
   border:1px solid rgba(var(--ink-rgb),.1);color:rgba(var(--ink-rgb),.45);

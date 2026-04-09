@@ -824,7 +824,7 @@ document.querySelectorAll('.proj-blog-link').forEach(link => {
       neofetch: cmdNeofetch, fastfetch: cmdNeofetch,
       clear: clearTerm,
       pwd:    () => appendLine('<span class="tv">/home/irukatun</span>'),
-      uname:  () => appendLine(`<span class="tv">Linux ${HOST} 6.12.15-irukatun #1 SMP 搶占動態排程 aarch64 GNU/Linux</span>`),
+      uname:  () => appendLine(`<span class="tv">Linux ${HOST} 6.12.15-irukatun #1 aarch64 GNU/Linux</span>`),
       date:   () => appendLine(`<span class="tv">${new Date().toLocaleString('zh-TW', {weekday:'long',year:'numeric',month:'long',day:'numeric',hour:'2-digit',minute:'2-digit',second:'2-digit'})}</span>`),
       uptime: () => appendLine(`<span class="tv">${new Date().toLocaleTimeString('zh-TW')} 已運行 1234 天 5:16，7 位使用者，系統負載：2.30 4.60 4.10</span>`),
       echo:   () => appendLine(`<span class="tv">${esc(argv.slice(1).join(' '))}</span>`),
@@ -839,10 +839,10 @@ document.querySelectorAll('.proj-blog-link').forEach(link => {
       nvim:   () => appendLine('<span class="term-err">nvim: 找不到出口，請關閉瀏覽器頁籤求生</span>'),
       nano:   () => appendLine('<span class="tco">nano: 已開啟 (Ctrl+X 無效，Ctrl+C 取消)</span>'),
       rm: () => {
-        if (/rm\b.*-[a-z]*r[a-z]*f[a-z]*\s*(\/|\*)/.test(input) || /rm\s+-rf\s*\//.test(input)) {
+        if (/rm\b.*-[a-z]*r[a-z]*f/.test(input)) {
           appendLine('<span class="term-err">rm: 你是認真的嗎 👀 </span>');
         } else {
-          appendLine(`<span class="term-err">rm: ${esc(argv.slice(1).join(' '))}: 你好壞！</span>`);
+          appendLine(`<span class="term-err">rm: ${esc(argv.slice(1).join(' '))}不可以亂刪資料ㄛ！</span>`);
         }
       },
     };
@@ -1001,29 +1001,43 @@ document.querySelectorAll('.proj-blog-link').forEach(link => {
 
   function cmdNeofetch() {
     appendLine('&nbsp;');
-    [
-      `      ／(・ × ・)＼      <span class="tp">irukatun</span><span class="tc">@</span><span class="tp">iruka_pc_studio</span>`,
-      `     |  iruka  |      <span class="tco">────────────────────</span>`,
-      `      \\   tun  /      <span class="tk">作業系統  </span><span class="tc">: </span><span class="tv">IrukaLinux 2.0 LTS</span>`,
-      `       ~~ 豚豚 ~~      <span class="tk">主機     </span><span class="tc">: </span><span class="tv">iruka_pc_studio</span>`,
-      `                      <span class="tk">核心版本  </span><span class="tc">: </span><span class="tv">GNU/Linux 6.12.15-irukatun</span>`,
-      `                      <span class="tk">處理器   </span><span class="tc">: </span><span class="tv">Intel i7-14700KF</span>`,
-      `                      <span class="tk">顯示卡   </span><span class="tc">: </span><span class="tv">RTX 4070 Ti Super</span>`,
-      `                      <span class="tk">記憶體   </span><span class="tc">: </span><span class="tv">64GB DDR5-6000</span>`,
-    ].forEach(l => appendLine(`<span class="tv" style="white-space:pre;font-size:.7rem">${l}</span>`));
+    const art = [
+      '／(・ × ・)＼',
+      '|  iruka  |',
+      ' \\   tun  /',
+      '  ~~ 豚豚 ~~',
+    ];
+    const info = [
+      { key: null,      val: `<span class="tp">irukatun</span><span class="tc">@</span><span class="tp">iruka_pc_studio</span>` },
+      { key: null,      val: `<span class="tco">────────────────────</span>` },
+      { key: '作業系統', val: `<span class="tv">IrukaLinux 2.0 LTS</span>` },
+      { key: '主機',     val: `<span class="tv">iruka_pc_studio</span>` },
+      { key: '核心版本', val: `<span class="tv">GNU/Linux 6.12.15-irukatun</span>` },
+      { key: '處理器',   val: `<span class="tv">Intel i7-14700KF</span>` },
+      { key: '顯示卡',   val: `<span class="tv">RTX 4070 Ti Super</span>` },
+      { key: '記憶體',   val: `<span class="tv">64GB DDR5-6000</span>` },
+    ];
+    const artDiv  = `<div>${art.map(l => `<div class="tv" style="white-space:pre">${l}</div>`).join('')}</div>`;
+    const infoDiv = `<div>${info.map(({ key, val }) =>
+      key
+        ? `<div><span class="tk" style="display:inline-block;min-width:3.2rem">${key}</span><span class="tc"> : </span>${val}</div>`
+        : `<div>${val}</div>`
+    ).join('')}</div>`;
+    appendLine(`<div style="display:flex;gap:2rem;align-items:flex-start;line-height:1.75">${artDiv}${infoDiv}</div>`);
     appendLine('&nbsp;');
   }
 
   function cmdCoffee() {
-    ['<span class="tv" style="white-space:pre">       ( (      </span>',
-     '<span class="tv" style="white-space:pre">        ) )     </span>',
-     '<span class="tv" style="white-space:pre">      ........   </span>',
-     '<span class="tv" style="white-space:pre">      |      |]  </span>',
-     '<span class="tv" style="white-space:pre">      \\      /   </span>',
-     '<span class="tv" style="white-space:pre">       \\____/    </span>',
-     '&nbsp;',
-     '<span class="tv">  ☕ +100 能量（還是很睏）</span>',
-    ].forEach(l => appendLine(l));
+    appendLine([
+      '       ( (     ',
+      '        ) )    ',
+      '      ........  ',
+      '      |      |] ',
+      '      \\      /  ',
+      '       \\____/   ',
+    ].map(l => `<span class="tv" style="display:block;white-space:pre;font-family:monospace">${l}</span>`).join(''));
+    appendLine('&nbsp;');
+    appendLine('<span class="tv">  ☕ +100 能量（還是很睏）</span>');
   }
 
   /* ── UTILS ── */
@@ -1062,7 +1076,7 @@ document.querySelectorAll('.proj-blog-link').forEach(link => {
     { id:'contact', tag:'REACH OUT', title:'聯絡我',       sub:'與豚豚取得聯絡',               x:750,  y:700,  color:'#4aaed4', type:'hub',     connects:['origin','email','discord'] },
     { id:'portal',  tag:'SERVICES',  title:'服務入口',     sub:'進入服務入口',              x:2250, y:700,  color:'#f97316', type:'portal',  url:'https://portal.irukatun.dev', connects:['origin'] },
     { id:'blog',    tag:'BLOG',   title:'部落格',       sub:'HackMD',                   x:2250, y:2100, color:'#34d399', type:'portal',  url:'https://hackmd.io/@irukatun', connects:['origin'] },
-    { id:'github',  tag:'CODE',    title:'程式碼',       sub:'GitHub',                     x:750,  y:2100, color:'#a78bfa', type:'portal',  url:'https://github.com/irukatun', connects:['origin'] },
+    { id:'github',  tag:'Talk is cheap',    title:'GitHub',       sub:'Show me the code',                     x:750,  y:2100, color:'#a78bfa', type:'portal',  url:'https://github.com/irukatun', connects:['origin'] },
     { id:'email',   tag:'EMAIL',     title:'電子郵件',     sub:'support@irukatun.dev',         x:200,  y:100,  color:'#4aaed4', type:'link',    url:'mailto:support@irukatun.dev', connects:['contact'] },
     { id:'discord', tag:'DISCORD',   title:'Discord',      sub:'irukatun.DEV',        x:1300, y:100,  color:'#4aaed4', type:'link',    url:'https://discord.gg/eMxX8DuFKh', connects:['contact'] },
   ];
@@ -1414,7 +1428,6 @@ document.querySelectorAll('.proj-blog-link').forEach(link => {
     const label = dark ? '切換淺色模式' : '切換深色模式';
     btn.setAttribute('aria-label', label);
     smapBtn.setAttribute('aria-label', label);
-    localStorage.setItem('theme', dark ? 'dark' : 'light');
   }
 
   function toggle() {
@@ -1423,6 +1436,10 @@ document.querySelectorAll('.proj-blog-link').forEach(link => {
 
   btn.addEventListener('click', toggle);
   smapBtn.addEventListener('click', toggle);
+
+  window.matchMedia('(prefers-color-scheme:dark)').addEventListener('change', e => {
+    applyTheme(e.matches);
+  });
 
   // Add to cursor hover detection
   [btn, smapBtn].forEach(b => {
