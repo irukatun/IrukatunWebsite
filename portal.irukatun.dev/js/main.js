@@ -381,6 +381,12 @@ for (let i = 0; i < TRAIL; i++) {
   panTo('origin', false);
   updateUI();
 
+  const vEl = document.getElementById('smap-cache-version');
+  if (vEl) {
+    const v = (document.querySelector('script[src*="main.js"]')?.src.match(/[?&]v=(\w+)/) || [])[1];
+    if (v) vEl.textContent = v;
+  }
+
   // ── Entrance animation ────────────────────────────────────
   gsap.set('#smap-n-origin',                 { opacity: 0, scale: 0.82 });
   gsap.set('.smap-node:not(#smap-n-origin)', { opacity: 0, scale: 0.88 });

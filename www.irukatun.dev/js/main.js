@@ -1376,6 +1376,12 @@ document.querySelectorAll('.proj-blog-link').forEach(link => {
   panTo('origin', false);
   updateUI();
 
+  const vEl = document.getElementById('smap-cache-version');
+  if (vEl) {
+    const v = (document.querySelector('script[src*="main.js"]')?.src.match(/[?&]v=(\w+)/) || [])[1];
+    if (v) vEl.textContent = v;
+  }
+
   // ── GSAP scroll entrance ──────────────────────────────────
   gsap.set('#smap-n-origin',                    { opacity: 0, scale: 0.82 });
   gsap.set('.smap-node:not(#smap-n-origin)',    { opacity: 0, scale: 0.88 });
