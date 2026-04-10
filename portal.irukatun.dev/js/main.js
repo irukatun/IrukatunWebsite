@@ -224,6 +224,11 @@ for (let i = 0; i < TRAIL; i++) {
     navigateTo(prev);
   }
 
+  // Force reload on bfcache restore so entrance animation always plays cleanly
+  window.addEventListener('pageshow', e => {
+    if (e.persisted) window.location.reload();
+  });
+
   // ── Portal animation → navigate current tab ─────────────
   function runPortalTransition(url) {
     gsap.to(canvas, { scale: 5, duration: 0.9, ease: 'power3.in' });
@@ -376,7 +381,7 @@ for (let i = 0; i < TRAIL; i++) {
   panTo('origin', false);
   updateUI();
 
-  // ── Entrance animation (on page load, no ScrollTrigger needed) ──
+  // ── Entrance animation ────────────────────────────────────
   gsap.set('#smap-n-origin',                 { opacity: 0, scale: 0.82 });
   gsap.set('.smap-node:not(#smap-n-origin)', { opacity: 0, scale: 0.88 });
   gsap.set('.smap-corner-label',             { opacity: 0 });
@@ -415,11 +420,13 @@ for (let i = 0; i < TRAIL; i++) {
   }
 
   smapBtn.addEventListener('click', () => {
-    applyTheme(root.getAttribute('data-theme') !== 'dark');
+    const dark = root.getAttribute('data-theme') !== 'dark';
+    sessionStorage.setItem('theme', dark ? 'dark' : 'light');
+    applyTheme(dark);
   });
 
   window.matchMedia('(prefers-color-scheme:dark)').addEventListener('change', e => {
-    applyTheme(e.matches);
+    if (!sessionStorage.getItem('theme')) applyTheme(e.matches);
   });
 
   smapBtn.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));

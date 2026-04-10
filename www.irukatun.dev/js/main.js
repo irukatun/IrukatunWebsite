@@ -1218,6 +1218,11 @@ document.querySelectorAll('.proj-blog-link').forEach(link => {
     navigateTo(prev);
   }
 
+  // Force reload on bfcache restore so entrance animation always plays cleanly
+  window.addEventListener('pageshow', e => {
+    if (e.persisted) window.location.reload();
+  });
+
   // ── Portal animation → navigate current tab ─────────────
   function runPortalTransition(url) {
     gsap.to(canvas, { scale: 5, duration: 0.9, ease: 'power3.in' });
@@ -1372,7 +1377,6 @@ document.querySelectorAll('.proj-blog-link').forEach(link => {
   updateUI();
 
   // ── GSAP scroll entrance ──────────────────────────────────
-  // Lines start at opacity:0 via inline style set in buildLines()
   gsap.set('#smap-n-origin',                    { opacity: 0, scale: 0.82 });
   gsap.set('.smap-node:not(#smap-n-origin)',    { opacity: 0, scale: 0.88 });
   gsap.set('.smap-corner-label',                { opacity: 0 });
@@ -1385,24 +1389,19 @@ document.querySelectorAll('.proj-blog-link').forEach(link => {
     once:    true,
     onEnter() {
       const allLines = Object.values(lineMap);
-      // Origin card first
       gsap.to('#smap-n-origin', {
         opacity: 1, scale: 1, duration: 1.1, ease: 'back.out(1.4)',
         onComplete() {
-          // Lines fade in after card appears, with stagger
           allLines.forEach(({ base }, i) => {
             gsap.to(base, { opacity: 1, duration: 1.0, ease: 'power2.out', delay: i * 0.1 });
           });
-          // Corner nodes fade in with stagger right after origin
           gsap.to('.smap-node:not(#smap-n-origin)', {
             opacity: 1, scale: 1, duration: 0.6, ease: 'back.out(1.2)',
             stagger: 0.08, delay: 0.1
           });
-          // UI elements shortly after
           gsap.to('.smap-corner-label', { opacity: 1, duration: 0.5, delay: 0.2 });
           gsap.to('#smap-hud',          { opacity: 1, y: 0, duration: 0.5, delay: 0.3 });
           gsap.to('#smap-footer',       { opacity: 1, y: 0, duration: 0.5, delay: 0.4 });
-          // Restore flow animations after lines finish
           setTimeout(() => updateUI(), 1800);
         }
       });
@@ -1424,14 +1423,16 @@ document.querySelectorAll('.proj-blog-link').forEach(link => {
   }
 
   function toggle() {
-    applyTheme(root.getAttribute('data-theme') !== 'dark');
+    const dark = root.getAttribute('data-theme') !== 'dark';
+    sessionStorage.setItem('theme', dark ? 'dark' : 'light');
+    applyTheme(dark);
   }
 
   btn.addEventListener('click', toggle);
   smapBtn.addEventListener('click', toggle);
 
   window.matchMedia('(prefers-color-scheme:dark)').addEventListener('change', e => {
-    applyTheme(e.matches);
+    if (!sessionStorage.getItem('theme')) applyTheme(e.matches);
   });
 
   // Add to cursor hover detection
