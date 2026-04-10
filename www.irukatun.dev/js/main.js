@@ -1079,7 +1079,7 @@ document.querySelectorAll('.proj-blog-link').forEach(link => {
     { id:'blog',    tag:'BLOG',   title:'部落格',       sub:'HackMD',                   x:2250, y:2100, color:'#34d399', type:'portal',  url:'https://hackmd.io/@irukatun', connects:['origin'] },
     { id:'github',  tag:'Talk is cheap',    title:'GitHub',       sub:'Show me the code',                     x:750,  y:2100, color:'#a78bfa', type:'portal',  url:'https://github.com/irukatun', connects:['origin'] },
     { id:'email',   tag:'EMAIL',     title:'電子郵件',     sub:'support@irukatun.dev',         x:200,  y:100,  color:'#4aaed4', type:'link',    url:'mailto:support@irukatun.dev', connects:['contact'] },
-    { id:'discord', tag:'DISCORD',   title:'Discord',      sub:'irukatun.DEV',        x:1300, y:100,  color:'#4aaed4', type:'link',    url:'https://discord.gg/eMxX8DuFKh', connects:['contact'] },
+    { id:'discord', tag:'DISCORD',   title:'Discord',      sub:'irukatun.DEV',        x:1300, y:100,  color:'#4aaed4', type:'portal',  url:'https://discord.gg/eMxX8DuFKh', connects:['contact'] },
   ];
   const nodeMap = {};
   NODES.forEach(n => nodeMap[n.id] = n);
