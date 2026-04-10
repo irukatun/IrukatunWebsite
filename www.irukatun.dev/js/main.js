@@ -729,29 +729,44 @@ document.querySelectorAll('.proj-blog-link').forEach(link => {
   let sudoMode = false, sudoTries = 0;
   let busy = false;
 
-  /* ── HIDDEN INPUT（喚起手機虛擬鍵盤）── */
-  const termInput = document.createElement('input');
-  termInput.type = 'search';
+  /* ── HIDDEN TEXTAREA（喚起手機虛擬鍵盤）──
+     使用 textarea 而非 input[type=search]：
+     textarea 能正確回報游標位置給 Android InputConnection API，
+     避免 IME 誤判插入點為 0 導致字元反序。 */
+  const termInput = document.createElement('textarea');
+  termInput.rows = 1;
   ['autocomplete','autocorrect','autocapitalize'].forEach(a => termInput.setAttribute(a,'off'));
   termInput.setAttribute('spellcheck','false');
   termInput.setAttribute('inputmode','text');
-  termInput.style.cssText = 'position:absolute;opacity:0;pointer-events:none;width:1px;height:1px;top:0;left:0;border:none;outline:none;background:transparent;';
+  termInput.style.cssText = 'position:absolute;opacity:0;pointer-events:none;width:1px;height:1px;bottom:0;left:0;border:none;outline:none;background:transparent;resize:none;overflow:hidden;';
   termEl.style.position = 'relative';
   termEl.appendChild(termInput);
 
   const syncEnd = () => termInput.setSelectionRange(termInput.value.length, termInput.value.length);
 
-  termEl.addEventListener('click', () => { termInput.focus({ preventScroll: true }); syncEnd(); });
+  termEl.addEventListener('click', () => { termInput.focus(); syncEnd(); });
   termInput.addEventListener('focus', () => termEl.classList.add('focused'));
   termInput.addEventListener('blur',  () => termEl.classList.remove('focused'));
+
+  let isComposing = false;
+  termInput.addEventListener('compositionstart', () => { isComposing = true; });
+  termInput.addEventListener('compositionend', () => {
+    isComposing = false;
+    const val = termInput.value.replace(/[\r\n]/g, '');
+    if (val !== termInput.value) termInput.value = val;
+    currentInput = val;
+    inputMirror.textContent = currentInput;
+    syncEnd();
+  });
 
   termInput.addEventListener('input', () => {
     if (busy)     { termInput.value = currentInput; return; }
     if (sudoMode) { termInput.value = ''; return; }
-    termInput.value = termInput.value.replace(/[\r\n]/g, '');
-    currentInput = termInput.value;
+    const val = termInput.value.replace(/[\r\n]/g, '');
+    if (val !== termInput.value) termInput.value = val;
+    currentInput = val;
     inputMirror.textContent = currentInput;
-    syncEnd();
+    if (!isComposing) syncEnd();
   });
 
   termInput.addEventListener('keydown', e => {
