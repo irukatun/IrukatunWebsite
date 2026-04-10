@@ -73,11 +73,9 @@ gsap.set('.cert-nav-group', { opacity:0, y:8 });
 gsap.set('.cert-card', { opacity:0, y:48, scale:.95 });
 gsap.set('.proj-row', { opacity:0, y:56 });
 gsap.set('.proj-visual', { scale:.91 });
-gsap.set('.proj-tag', { y:12 });
 gsap.set('.proj-name', { y:20 });
 gsap.set('.proj-desc', { y:14 });
 gsap.set('.proj-tline', { y:14 });
-gsap.set('.proj-stacks', { y:10 });
 gsap.set('.proj-blog-link', { y:10 });
 
 // ── CURSOR ──────────────────────────────────────────────
@@ -309,11 +307,6 @@ heroTL
     { opacity: 1, y: 0, duration: .75, ease: 'power3.out' },
     '-=.55'
   )
-  .fromTo('#hero-cta',
-    { opacity: 0, y: 14 },
-    { opacity: 1, y: 0, duration: .7, ease: 'power3.out' },
-    '-=.45'
-  )
   .fromTo('#hero-scroll',
     { opacity: 0 },
     { opacity: 1, duration: .6 },
@@ -438,11 +431,6 @@ ScrollTrigger.create({
     ballOverlay.style.clipPath = `circle(${r}px at 92% 84%)`;
   }
 });
-gsap.to('.hbc2', {
-  y: -45, ease: 'none',
-  scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: 2.4 }
-});
-
 // ── CERT MODAL ────────────────────────────────────────────
 const CERT_DATA = {
   1: {
@@ -738,6 +726,7 @@ document.querySelectorAll('.proj-blog-link').forEach(link => {
   ['autocomplete','autocorrect','autocapitalize'].forEach(a => termInput.setAttribute(a,'off'));
   termInput.setAttribute('spellcheck','false');
   termInput.setAttribute('inputmode','text');
+  termInput.setAttribute('tabindex','-1');
   termInput.style.cssText = 'position:absolute;opacity:0;pointer-events:none;width:1px;height:1px;bottom:0;left:0;border:none;outline:none;background:transparent;resize:none;overflow:hidden;';
   termEl.style.position = 'relative';
   termEl.appendChild(termInput);
