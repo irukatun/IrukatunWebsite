@@ -224,17 +224,13 @@ for (let i = 0; i < TRAIL; i++) {
     navigateTo(prev);
   }
 
-  // ── Portal animation → open in new tab ───────────────────
+  // ── Portal animation → navigate current tab ─────────────
   function runPortalTransition(url) {
     gsap.to(canvas, { scale: 5, duration: 0.9, ease: 'power3.in' });
     gsap.to(flash, {
       opacity: 1, duration: 0.3, delay: 0.65,
       onComplete() {
-        if (url) window.open(url, '_blank', 'noopener');
-        setTimeout(() => {
-          gsap.to(canvas, { scale: 1, duration: 0.9, ease: 'power3.out' });
-          gsap.to(flash,  { opacity: 0, duration: 0.4 });
-        }, 2000);
+        if (url) window.location.href = url;
       }
     });
   }
