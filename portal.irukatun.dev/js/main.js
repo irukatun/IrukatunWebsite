@@ -224,10 +224,16 @@ for (let i = 0; i < TRAIL; i++) {
     navigateTo(prev);
   }
 
-  // Force reload on bfcache restore so entrance animation always plays cleanly
-  window.addEventListener('pageshow', e => {
-    if (e.persisted) window.location.reload();
-  });
+  // Reload when returning from external service (bfcache or app-switch)
+  // sessionStorage flag ensures only one reload fires regardless of which event wins
+  function reloadIfReturning() {
+    if (!sessionStorage.getItem('leaving')) return;
+    sessionStorage.removeItem('leaving');
+    window.location.reload();
+  }
+  window.addEventListener('pageshow', e => { if (e.persisted) reloadIfReturning(); });
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) reloadIfReturning(); });
+  window.addEventListener('focus', reloadIfReturning);
 
   // ── Portal animation → navigate current tab ─────────────
   function runPortalTransition(url) {
@@ -235,7 +241,7 @@ for (let i = 0; i < TRAIL; i++) {
     gsap.to(flash, {
       opacity: 1, duration: 0.3, delay: 0.65,
       onComplete() {
-        if (url) window.location.href = url;
+        if (url) { sessionStorage.setItem('leaving', '1'); window.location.href = url; }
       }
     });
   }
